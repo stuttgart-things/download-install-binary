@@ -1,0 +1,20 @@
+---
+- name: download and unarchive -- {{ item.key }}
+  unarchive:
+    src: "{{ item.value.source_link }}"
+    dest: /tmp
+    copy: no
+    validate_certs: no
+  tags: download
+
+- name: copy binary -- {{ item.key }}
+  copy:
+    src: "{{ item.value.dir_to_copy }}"
+    dest: "{{ item.value.bin_dir }}"
+    mode: 0755
+    remote_src: yes
+
+- name: delete downloading dir -- {{ item.key }}
+  file:
+    path: "{{ item.value.dir_to_delete }}"
+    state: absent
