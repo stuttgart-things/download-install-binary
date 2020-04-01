@@ -8,7 +8,7 @@
   unarchive:
     src: "{{ item.value.source_link }}"
     dest: /tmp/downloads
-    copy: no
+    #copy: no
     validate_certs: no
     remote_src: yes
   tags: download
