@@ -1,8 +1,13 @@
 ---
+- name: Create temporary download directory (if it does not exist)
+  file:
+    path: /tmp/downloads
+    state: directory
+
 - name: download and unarchive -- {{ item.key }}
   unarchive:
     src: "{{ item.value.source_link }}"
-    dest: /tmp/
+    dest: /tmp/downloads
     copy: no
     validate_certs: no
   tags: download
