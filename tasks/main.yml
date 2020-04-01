@@ -10,6 +10,7 @@
     dest: /tmp/downloads
     copy: no
     validate_certs: no
+    remote_src: yes
   tags: download
 
 - name: copy binary -- {{ item.key }}
