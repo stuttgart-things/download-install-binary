@@ -2,7 +2,7 @@
 - name: download and unarchive -- {{ item.key }}
   unarchive:
     src: "{{ item.value.source_link }}"
-    dest: /tmp
+    dest: /tmp/
     copy: no
     validate_certs: no
   tags: download
