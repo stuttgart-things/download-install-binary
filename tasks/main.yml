@@ -21,5 +21,5 @@
 
 - name: delete downloading dir -- {{ item.key }}
   file:
-    path: "{{ item.value.dir_to_delete }}"
+    path: "{{ item.value.to_remove }}"
     state: absent
