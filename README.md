@@ -49,7 +49,7 @@ Example Playbook
     - name: call role download_binary in a loop
       include_role:
         name: download_binary
-      loop: "{{ lookup('dict', cli) }}"
+      loop: "{{ lookup('dict', cli, wantlist=True) }}"
 ```
 
 License
