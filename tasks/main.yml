@@ -6,16 +6,15 @@
 
 - name: download and unarchive -- {{ item.key }}
   unarchive:
-    src: "{{ item.value.source_link }}"
+    src: "{{ item.value.source_url }}"
     dest: /tmp/downloads
-    #copy: no
     validate_certs: no
     remote_src: yes
   tags: download
 
 - name: copy binary -- {{ item.key }}
   copy:
-    src: "{{ item.value.dir_to_copy }}"
+    src: "{{ item.value.bin_to_copy }}"
     dest: "{{ item.value.bin_dir }}"
     mode: 0755
     remote_src: yes
