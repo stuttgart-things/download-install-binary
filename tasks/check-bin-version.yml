@@ -1,0 +1,22 @@
+---
+- name: check for existing {{ item.value.bin_name }}
+  stat:
+    path: "/usr/bin/{{ item.value.bin_name }}"
+  register: result_a
+
+- name: check for existing {{ item.value.bin_name }}
+  stat:
+    path: "{{ item.value.bin_dir }}{{ item.value.bin_name }}"
+  register: result_b
+  when: not result_a.stat.exists
+
+- name: check version if {{ item.value.bin_name }} already installed
+  command: "{{ item.value.bin_name }} version"
+  register: result_c
+  when: result_a.stat.exists or result_b.stat.exists
+  changed_when: False
+  failed_when: False
+
+- name: compare installed version and wanted version
+  set_fact:
+    flag: "{{ item.value.bin_version not in result_c.stdout }}" 
