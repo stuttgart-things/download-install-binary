@@ -1,6 +1,9 @@
 ---
+- include: check-installation.yml
+
 - include: check-bin-version.yml
-  when: item.value.check_bin_version_before_installing is true
+  when: is_installed and 
+        ( item.value.check_bin_version_before_installing|bool )
 
 - include: dl_cp_binary.yml
-  when: flag is defined and flag
+  when: (versions_match is not defined) or (not versions_match)
