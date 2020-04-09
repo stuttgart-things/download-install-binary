@@ -1,9 +1,9 @@
 ---
-- name: check /usr/bin/{{ item.value.bin_name }}
-  stat:
-    path: "/usr/bin/{{ item.value.bin_name }}"
-  register: result_a
+- shell: which {{ item.value.bin_name }}
+  register: res_path
+  changed_when: False
+  failed_when: False
 
 - name: 
   set_fact: 
-    is_installed: "{{ result_a.stat.exists }}"
+    is_installed: "{{ res_path.stdout|length > 0 }}"
