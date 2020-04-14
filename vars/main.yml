@@ -1,2 +1,4 @@
 ---
 download_dir: "/tmp/downloads"
+
+wanted_status: "present"

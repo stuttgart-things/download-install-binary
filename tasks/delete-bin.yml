@@ -1,0 +1,5 @@
+---
+- name: delete -- {{ item.value.bin_name }}
+  file:
+    path: "{{ item.value.bin_dir }}/{{ item.value.bin_name }}"
+    state: absent

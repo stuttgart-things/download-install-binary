@@ -1,12 +1,16 @@
 download_binary
 =========
 
-This is a generic role which includes the following tasks:
+This role includes the following tasks:
+- check whether the binary has been installed, and whether it locates in the ```bin_dir```
+- Install (when ```wanted_status="present"```, default) or delete (when ```wanted_status="absent"```) the binary file. The parameter ```wanted_status``` is usually overwriten by a config-file, e.g. cherry file.
+- If binary installed and version check required, the role checks binary version. When the wanted version does not match the installed version, it proceeds with the installation, otherwise the installation tasks are skipped to save time.
+
+The process of installing binary:
 - unarchive -> download and unarchive the zip-file for installation
 - copy -> copy the binary to bin-folder
 - remove -> remove the downloaded directory.
 
-If required, the role checks whether the package is already installed and its version if installed, before doing the tasks above. When the wanted version does not match the installed version, it proceeds with the installation, otherwise the tasks above are skipped to save time.
 
 Requirements
 ------------
@@ -36,14 +40,14 @@ Example Playbook
 ```
 - hosts: myserver
   vars:
-    download_dir: "/tmp/downloads/" # dir will be created if it doesent exists
+    download_dir: "/tmp/downloads" # dir will be created if it doesent exists
     cli:
       terraform:
         bin_name: 'terraform'
         bin_version: '0.12.24'
         source_url: "https://releases.hashicorp.com/terraform/0.12.24/terraform_0.12.24_linux_amd64.zip"
         bin_to_copy: "terraform"
-        bin_dir: "/usr/local/bin/"
+        bin_dir: "/usr/local/bin"
         to_remove: "terraform"
         check_bin_version_before_installing: true
 
@@ -54,7 +58,7 @@ Example Playbook
         source_url: "https://github.com/vmware-tanzu/velero/releases/download/v1.3.1/velero-v1.3.1-linux-amd64.tar.gz"
         bin_to_copy: "velero-v1.3.1-linux-amd64/velero"
         to_remove: "velero-v1.3.1-linux-amd64"
-        bin_dir: "/usr/local/bin/"
+        bin_dir: "/usr/local/bin"
 
   tasks:
     - name: call role download_binary in a loop

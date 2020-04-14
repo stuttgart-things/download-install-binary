@@ -1,9 +1,17 @@
 ---
-- shell: which {{ item.value.bin_name }}
+- name: which {{ item.value.bin_name }}
+  shell: which {{ item.value.bin_name }}
   register: res_path
   changed_when: False
   failed_when: False
 
-- name: 
+- name: is the package {{ item.value.bin_name }} installed?
   set_fact: 
     is_installed: "{{ res_path.stdout|length > 0 }}"
+
+- set_fact:
+    myvar: '{{ item.value.bin_dir }}/{{item.value.bin_name}}'
+
+- name: is the package installed in {{ item.value.bin_dir }}?
+  set_fact: 
+    is_in_bin_dir: "{{ res_path.stdout==myvar }}"
