@@ -10,4 +10,4 @@
         
 - include: dl_cp_binary.yml
   when: ( wanted_status=="present" ) and 
-        (versions_match is not defined) or (not versions_match)
+        ( (versions_match is not defined) or (not versions_match) ) 
