@@ -3,7 +3,7 @@ download_binary
 
 This role includes the following tasks:
 - check whether the binary has been installed, and whether it locates in the ```bin_dir```
-- Install (when ```wanted_status="present"```, default) or delete (when ```wanted_status="absent"```) the binary file. The parameter ```wanted_status``` is usually overwriten by a config-file, e.g. cherry file.
+- Install (when ```wanted_state="present"```, default) or delete (when ```wanted_state="absent"```) the binary file. The parameter ```wanted_state``` is usually overwriten by a config-file, e.g. cherry file.
 - If binary installed and version check required, the role checks binary version. When the wanted version does not match the installed version, it proceeds with the installation, otherwise the installation tasks are skipped to save time.
 
 The process of installing binary:

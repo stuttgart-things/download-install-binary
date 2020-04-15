@@ -2,12 +2,12 @@
 - include: check-installation.yml
 
 - include: delete-bin.yml
-  when: is_in_bin_dir and ( wanted_status =="absent" )
+  when: is_in_bin_dir and ( wanted_state =="absent" )
 
 - include: check-bin-version.yml
-  when: ( wanted_status=="present" ) and is_installed and is_in_bin_dir and 
+  when: ( wanted_state=="present" ) and is_installed and is_in_bin_dir and 
         ( item.value.check_bin_version_before_installing|bool )
         
 - include: dl_cp_binary.yml
-  when: ( wanted_status=="present" ) and 
+  when: ( wanted_state=="present" ) and 
         ( (versions_match is not defined) or (not versions_match) ) 
