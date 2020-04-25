@@ -41,7 +41,7 @@ Example Playbook
 - hosts: myserver
   vars:
     download_dir: "/tmp/downloads" # dir will be created if it doesent exists
-    cli:
+    bin:
       terraform:
         bin_name: 'terraform'
         bin_version: '0.12.24'
@@ -64,7 +64,7 @@ Example Playbook
     - name: call role download_binary in a loop
       include_role:
         name: download_binary
-      loop: "{{ lookup('dict', cli, wantlist=True) }}"
+      loop: "{{ lookup('dict', bin, wantlist=True) }}"
 ```
 
 License
