@@ -3,6 +3,7 @@
   file:
     path: "{{ download_dir }}"
     state: directory
+    mode: '1777'
 
 - name: download and unarchive -- {{ item.value.bin_name }}
   unarchive:

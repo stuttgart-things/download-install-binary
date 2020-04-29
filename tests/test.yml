@@ -1,6 +1,6 @@
 ---
 - hosts: localhost
-  remote_user: root
+  become: true
   vars:
 
     cli:
@@ -11,7 +11,7 @@
         source_url: "https://github.com/vmware-tanzu/velero/releases/download/v1.3.1/velero-v1.3.1-linux-amd64.tar.gz"
         bin_to_copy: "velero-v1.3.1-linux-amd64/velero"
         to_remove: "velero-v1.3.1-linux-amd64"
-        bin_dir: "/usr/local/bin"
+        bin_dir: "$HOME/tmp"
       terraform:
         bin_name: "terraform"
         bin_version: "0.12.8"
@@ -19,7 +19,7 @@
         source_url: "https://releases.hashicorp.com/terraform/0.12.8/terraform_0.12.8_linux_amd64.zip"
         bin_to_copy: "terraform"
         to_remove: "terraform"
-        bin_dir: "/usr/local/bin"
+        bin_dir: "$HOME/tmp"
 
   tasks:
     - name: Start testing download_binary in a loop
