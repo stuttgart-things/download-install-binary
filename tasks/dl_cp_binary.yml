@@ -5,12 +5,21 @@
     state: directory
     mode: '1777'
 
+- name: download -- {{ item.value.bin_name }}
+  get_url:
+    src: "{{ item.value.source_url }}"
+    dest: "{{ download_dir }}"
+    validate_certs: no
+  when: "'zip' or 'tar' not in item.value.source_url"
+  tags: download
+
 - name: download and unarchive -- {{ item.value.bin_name }}
   unarchive:
     src: "{{ item.value.source_url }}"
     dest: "{{ download_dir }}"
     validate_certs: no
     remote_src: yes
+  when: "'zip' or 'tar' in item.value.source_url"
   tags: download
 
 - name: copy binary -- {{ item.value.bin_name }}
