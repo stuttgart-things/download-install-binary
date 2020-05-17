@@ -19,7 +19,7 @@
     dest: "{{ download_dir }}"
     validate_certs: no
     remote_src: yes
-  when: "'.zip' in item.value.source_url or '.tar' item.value.source_url"
+  when: "'.zip' in item.value.source_url or '.tar' in item.value.source_url"
   tags: download
 
 - name: copy binary -- {{ item.value.bin_name }}
