@@ -10,7 +10,7 @@
     is_installed: "{{ res_path.stdout|length > 0 }}"
 
 - set_fact:
-    myvar: '{{ item.value.bin_dir }}/{{item.value.bin_name}}'
+    myvar: '{{ item.value.bin_dir }}{{item.value.bin_name}}'
 
 - name: is the package installed in {{ item.value.bin_dir }}?
   set_fact: 
