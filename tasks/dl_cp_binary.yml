@@ -28,6 +28,7 @@
     dest: "{{ item.value.bin_dir }}"
     mode: 0755
     remote_src: yes
+  become: yes
 
 - name: delete downloading dir -- {{ item.value.bin_name }}
   file:
