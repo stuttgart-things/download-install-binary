@@ -1,5 +1,5 @@
-download_binary
-=========
+download-install-binary 
+=======================
 
 This role includes the following tasks:
 - check whether the binary has been installed, and whether it locates in the ```bin_dir```
