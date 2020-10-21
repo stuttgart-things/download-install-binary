@@ -15,7 +15,10 @@
     msg: "File: {{ item.value.bin_dir }}/{{ item.value.bin_name }} has MD5 checksum: {{ status_checksum.stat.md5 }} expected MD5: {{ item.value.md5_checksum }}"
   when: status_file_exists.stat.exists | bool
 
-- name: Check if checksum is correct 
-  set_fact: 
-    checksum_wrong: true
-  when: (item.value.md5_checksum != status_checksum.stat.md5) and status_file_exists.stat.exists | bool
+- name: Checksum verify
+  block:
+    - name: Check if checksum is correct 
+      set_fact: 
+        checksum_wrong: true
+      when: (item.value.md5_checksum != status_checksum.stat.md5) and status_file_exists.stat.exists | bool
+  when: status_file_exists.stat.exists | bool
