@@ -5,20 +5,6 @@
   changed_when: False
   failed_when: False
 
-- name: "Calculate MD5 Checksum from file {{ item.value.bin_dir }}/{{ item.value.bin_name }}"
-  stat:
-    path: "{{ item.value.bin_dir }}/{{ item.value.bin_name }}"
-  register: status_checksum
-
-- name: Output checksum
-  debug:
-    msg: "File: {{ item.value.bin_dir }}/{{ item.value.bin_name }} has MD5 checksum: {{ status_checksum }}"
-
-- name: No checksum is defined set checksum
-  set_fact: 
-    md5_checksum: "{{ status_checksum }}"
-  when: md5_checksum not defined
-
 - name: is the package {{ item.value.bin_name }} installed?
   set_fact: 
     is_installed: "{{ res_path.stdout|length > 0 }}"
