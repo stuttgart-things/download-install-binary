@@ -2,6 +2,7 @@
 - name: "Calculate MD5 Checksum from file {{ item.value.bin_dir }}/{{ item.value.bin_name }}"
   stat:
     path: "{{ item.value.bin_dir }}/{{ item.value.bin_name }}"
+    checksum_algorithm: md5
   register: status_checksum
 
 - name: Output checksum
