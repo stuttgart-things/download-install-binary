@@ -1,19 +1,13 @@
 ---
-- name: "Check if file {{ item.value.bin_dir }}/{{ item.value.bin_name }} exists"
-  stat:
-    path: "{{ item.value.bin_dir }}/{{ item.value.bin_name }}"
-  register: status_file_exists
-
 - name: "Calculate MD5 Checksum from file {{ item.value.bin_dir }}/{{ item.value.bin_name }}"
   stat:
     path: "{{ item.value.bin_dir }}/{{ item.value.bin_name }}"
   register: status_checksum
-  when: status_file_exists.stat.exists | bool
 
 - name: Output checksum
   debug:
     msg: "File: {{ item.value.bin_dir }}/{{ item.value.bin_name }} has MD5 checksum: {{ status_checksum.stat.md5 }} expected MD5: {{ item.value.md5_checksum }}"
-  when: status_file_exists.stat.exists | bool
+  when: status_checksum.stat.exists | bool
 
 - name: Checksum verify
   block:
@@ -21,4 +15,4 @@
       set_fact: 
         checksum_wrong: true
       when: (item.value.md5_checksum != status_checksum.stat.md5)
-  when: status_file_exists.stat.exists | bool
+  when: status_checksum.stat.exists | bool
