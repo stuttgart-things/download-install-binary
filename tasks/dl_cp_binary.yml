@@ -1,12 +1,12 @@
 ---
 - name: Create temporary download directory (if it does not exist)
-  file:
+  ansible.builtin.file:
     path: "{{ download_dir }}"
     state: directory
     mode: '1777'
 
 - name: download -- {{ item.value.bin_name }}
-  get_url:
+  ansible.builtin.get_url:
     url: "{{ item.value.source_url }}"
     dest: "{{ download_dir }}"
     validate_certs: no
@@ -14,7 +14,7 @@
   tags: download
 
 - name: download and unarchive -- {{ item.value.bin_name }}
-  unarchive:
+  ansible.builtin.unarchive:
     src: "{{ item.value.source_url }}"
     dest: "{{ download_dir }}"
     validate_certs: no
@@ -23,7 +23,7 @@
   tags: download
 
 - name: copy binary -- {{ item.value.bin_name }}
-  copy:
+  ansible.builtin.copy:
     src: "{{ download_dir }}/{{ item.value.bin_to_copy }}"
     dest: "{{ item.value.bin_dir }}"
     mode: 0755
@@ -31,6 +31,6 @@
   become: yes
 
 - name: delete downloading dir -- {{ item.value.bin_name }}
-  file:
+  ansible.builtin.file:
     path: "{{ download_dir }}/{{ item.value.to_remove }}"
     state: absent

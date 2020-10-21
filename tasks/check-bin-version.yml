@@ -6,5 +6,5 @@
   failed_when: False
 
 - name: compare installed version and wanted version
-  set_fact:
+  ansible.builtin.set_fact:
     versions_match: "{{ item.value.bin_version in result_c.stdout }}" 

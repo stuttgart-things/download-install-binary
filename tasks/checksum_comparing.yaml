@@ -1,24 +1,29 @@
 ---
 - name: "Calculate MD5 Checksum from file {{ item.value.bin_dir }}/{{ item.value.bin_name }}"
-  stat:
+  ansible.builtin.stat:
     path: "{{ item.value.bin_dir }}/{{ item.value.bin_name }}"
     checksum_algorithm: md5
   register: status_checksum
 
 - name: Output checksum
-  debug:
+  ansible.builtin.debug:
     msg: "File: {{ item.value.bin_dir }}/{{ item.value.bin_name }} has MD5 checksum: {{ status_checksum.stat.checksum  }} expected MD5: {{ item.value.md5_checksum }}"
   when: status_checksum.stat.exists | bool
 
 - name: Checksum verify
   block:
     - name: Check if checksum is wrong
+      ansible.builtin.debug:
+        msg: "Checksum is not valid set wrong flag"
+      when: (item.value.md5_checksum != status_checksum.stat.checksum )
+
+    - name: Set checksum_wrong vars to true if checksum not valid
       set_fact: 
         checksum_wrong: true
       when: (item.value.md5_checksum != status_checksum.stat.checksum )
       
     - name: Check if checksum is valid
-      debug:
+      ansible.builtin.debug:
         msg: "Checksum is valid"
       when: (item.value.md5_checksum == status_checksum.stat.checksum )
   when: status_checksum.stat.exists | bool
