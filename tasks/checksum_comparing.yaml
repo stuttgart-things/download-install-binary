@@ -8,7 +8,7 @@
   debug:
     msg: "File: {{ item.value.bin_dir }}/{{ item.value.bin_name }} has MD5 checksum: {{ status_checksum }}"
 
-- name: No checksum is defined set checksum
+- name: Check if checksum is correct 
   set_fact: 
-    md5_checksum: "{{ status_checksum }}"
-  when: md5_checksum not defined
+    checksum_wrong: true
+  when: md5_checksum != status_checksum
