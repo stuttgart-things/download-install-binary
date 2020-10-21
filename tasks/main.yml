@@ -9,7 +9,7 @@
 
 - include: check-bin-version.yml
   when: ( wanted_state=="present" ) and is_installed and is_in_bin_dir and 
-        ( item.value.check_bin_version_before_installing|bool )
+        ( item.value.check_bin_version_before_installing|bool ) not checksum_wrong
         
 - include: dl_cp_binary.yml
   when: ( wanted_state=="present" ) and 
