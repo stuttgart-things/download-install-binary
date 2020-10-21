@@ -1,6 +1,6 @@
 ---
 - include: checksum_comparing.yaml
-  when: md5_checksum is defined
+  when: item.value.md5_checksum is defined
 
 - include: check-installation.yml
 
