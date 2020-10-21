@@ -12,8 +12,13 @@
 
 - name: Checksum verify
   block:
-    - name: Check if checksum is correct 
+    - name: Check if checksum is wrong
       set_fact: 
         checksum_wrong: true
       when: (item.value.md5_checksum != status_checksum.stat.checksum )
+      
+    - name: Check if checksum is valid
+      debug:
+        msg: "Checksum is valid"
+      when: (item.value.md5_checksum == status_checksum.stat.checksum )
   when: status_checksum.stat.exists | bool
