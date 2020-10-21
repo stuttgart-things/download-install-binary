@@ -14,6 +14,7 @@ The process of installing binary:
 ### Role installation:
 <details><summary><b>Install this role on your ansible host (klick here)</b></summary>
 stable version: 
+
 ```
 cat <<EOF > ./requirements.yaml
 roles:
@@ -27,6 +28,7 @@ EOF
 ansible-galaxy install -r ./requirements.yaml --force && ansible-galaxy collection install -r ./requirements.yaml -f
 ```
 latest version: (may unstable)
+
 ```
 cat <<EOF > ./requirements.yaml
 roles:
