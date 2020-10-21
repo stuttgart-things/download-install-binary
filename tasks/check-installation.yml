@@ -5,6 +5,12 @@
   changed_when: False
   failed_when: False
 
+- name: "Checking {{ bin_dir }}/{{ bin_to_copy }} against checksum {{ md5_checksum }}"
+  stat:
+    path: "{{ bin_dir }}/{{ bin_to_copy }}"
+  register: status_checksum
+  when: md5_checksum is defined
+
 - name: is the package {{ item.value.bin_name }} installed?
   set_fact: 
     is_installed: "{{ res_path.stdout|length > 0 }}"
