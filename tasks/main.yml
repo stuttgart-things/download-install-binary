@@ -2,7 +2,7 @@
 - include: check-installation.yml
 
 - include: delete-bin.yml
-  when: is_in_bin_dir and ( wanted_state =="absent" ) or md5_checksum != status_checksum
+  when: is_in_bin_dir and ( wanted_state =="absent" ) or checksum_wrong | bool
 
 - include: check-bin-version.yml
   when: ( wanted_state=="present" ) and is_installed and is_in_bin_dir and 
@@ -10,4 +10,4 @@
         
 - include: dl_cp_binary.yml
   when: ( wanted_state=="present" ) and 
-        ( (versions_match is not defined) or (not versions_match) ) or md5_checksum != status_checksum
+        ( (versions_match is not defined) or (not versions_match) ) or checksum_wrong | bool
