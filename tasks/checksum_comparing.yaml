@@ -20,5 +20,5 @@
     - name: Check if checksum is correct 
       set_fact: 
         checksum_wrong: true
-      when: (item.value.md5_checksum != status_checksum.stat.md5) and status_file_exists.stat.exists | bool
+      when: (item.value.md5_checksum != status_checksum.stat.md5)
   when: status_file_exists.stat.exists | bool
