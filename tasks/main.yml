@@ -1,4 +1,7 @@
 ---
+- include: checksum_comparing.yaml
+  when: checksum | bool
+
 - include: check-installation.yml
 
 - include: delete-bin.yml
