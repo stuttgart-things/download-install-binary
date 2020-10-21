@@ -17,7 +17,7 @@ The process of installing binary:
 ```
 cat <<EOF > ./requirements.yaml
 roles:
-- src: git@codehub.sva.de:Lab/stuttgart-things/supporting-roles/install-configure-vault.git
+- src: git@codehub.sva.de:Lab/stuttgart-things/supporting-roles/download-install-binary.git
   scm: git
   version: stable
 
