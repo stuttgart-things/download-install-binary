@@ -8,14 +8,14 @@
   stat:
     path: "{{ item.value.bin_dir }}/{{ item.value.bin_name }}"
   register: status_checksum
-  when: status_file_exists.stat.exists
+  when: status_file_exists.stat.exists | bool
 
 - name: Output checksum
   debug:
     msg: "File: {{ item.value.bin_dir }}/{{ item.value.bin_name }} has MD5 checksum: {{ status_checksum }}"
-  when: status_file_exists.stat.exists
+  when: status_file_exists.stat.exists | bool
 
 - name: Check if checksum is correct 
   set_fact: 
     checksum_wrong: true
-  when: md5_checksum != status_checksum and status_file_exists.stat.exists
+  when: md5_checksum != status_checksum and status_file_exists.stat.exists | bool
