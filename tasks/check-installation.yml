@@ -5,9 +5,9 @@
   changed_when: False
   failed_when: False
 
-- name: "Checking {{ bin_dir }}/{{ bin_to_copy }} against checksum {{ md5_checksum }}"
+- name: "Checking {{ item.value.bin_dir }}/{{ item.value.bin_name }} against checksum {{ item.value.md5_checksum }}"
   stat:
-    path: "{{ bin_dir }}/{{ bin_to_copy }}"
+    path: "{{ item.value.bin_dir }}/{{ item.value.bin_name }}"
   register: status_checksum
   when: md5_checksum is defined
 
