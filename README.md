@@ -114,4 +114,5 @@ Author Information
 ------------------
 
 Xiaomin Lai, 03/2020, xiaomin.lai@sva.de
+
 Patrick Hermann, 03/2020, patrick.hermann@sva.de
