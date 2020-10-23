@@ -2,15 +2,15 @@
 - include: checksum_comparing.yaml
   when: item.value.md5_checksum is defined
 
-- include: check-installation.yml
+- include: check-installation.yaml
 
-- include: delete-bin.yml
+- include: delete-bin.yaml
   when: is_in_bin_dir and ( wanted_state =="absent" ) or checksum_wrong | bool
 
-- include: check-bin-version.yml
+- include: check-bin-version.yaml
   when: ( wanted_state=="present" ) and is_installed and is_in_bin_dir and 
         ( item.value.check_bin_version_before_installing|bool ) and not checksum_wrong
         
-- include: dl_cp_binary.yml
+- include: dl_cp_binary.yaml
   when: ( wanted_state=="present" ) and 
         ( (versions_match is not defined) or (not versions_match) ) or checksum_wrong | bool
