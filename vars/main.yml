@@ -1,4 +1,0 @@
----
-download_dir: "/tmp/downloads"
-version_cmd: "--version" 
-wanted_state: "present"
