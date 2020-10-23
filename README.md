@@ -12,7 +12,7 @@ The process of installing binary:
 - remove -> remove the downloaded directory.
 
 ### Role installation:
-<details><summary><b>Install this role on your ansible host (klick here)</b></summary>
+<details><summary><b>Install this role on your ansible host (expand here)</b></summary>
 stable version: 
 
 ```
