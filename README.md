@@ -52,17 +52,12 @@ Role Variables
 --------------
 
 The role takes in a python dictionary with the following values: 
-- bin_name: binary name
-- bin_version: binary version
-- source_url: the link to the installation file
-- bin_to_copy: path of the binary, which will be copied to bin-folder
-- to_remove: path of the downloaded and unpacked installation file, which will be removed
-- bin_dir: directory of the bin-folder, usually "/usr/bin/" or "/usr/local/bin/".
-
-Dependencies
-------------
-
-None.
+* bin_name: binary name
+* bin_version: binary version
+* source_url: the link to the installation file
+* bin_to_copy: path of the binary, which will be copied to bin-folder
+* to_remove: path of the downloaded and unpacked installation file, which will be removed
+* bin_dir: directory of the bin-folder, usually "/usr/bin/" or "/usr/local/bin/".
 
 Example Playbook
 ----------------
