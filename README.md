@@ -97,6 +97,14 @@ Example Playbook
       loop: "{{ lookup('dict', bin, wantlist=True) }}"
 ```
 
+Role history
+----------------
+| date  | who | changelog |
+|---|---|---|
+|2020-03-30  | Xiaomin Lai | intial commit for this role in codehub
+|2020-04-10  | Patrick Hermann | added ability to download non zip and tar files
+|2020-10-23   | Christian Mueller | Updated for using of ansible collections, fixed role structure
+
 License
 -------
 
