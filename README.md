@@ -20,7 +20,6 @@ cat <<EOF > ./requirements.yaml
 roles:
 - src: git@codehub.sva.de:Lab/stuttgart-things/supporting-roles/download-install-binary.git
   scm: git
-  version: stable
 
 collections:
 - name: community.general
