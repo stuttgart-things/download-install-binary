@@ -1,6 +1,6 @@
 ---
 - name: Which {{ item.value.bin_name }}
-  shell: which {{ item.value.bin_name }}
+  ansible.builtin.shell: which {{ item.value.bin_name }}
   register: res_path
   changed_when: False
   failed_when: False
