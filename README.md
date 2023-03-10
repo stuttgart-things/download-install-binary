@@ -18,20 +18,7 @@ stable version:
 ```
 cat <<EOF > ./requirements.yaml
 roles:
-- src: git@codehub.sva.de:Lab/stuttgart-things/supporting-roles/download-install-binary.git
-  scm: git
-
-collections:
-- name: community.general
-EOF
-ansible-galaxy install -r ./requirements.yaml --force && ansible-galaxy collection install -r ./requirements.yaml -f
-```
-latest version: (may unstable)
-
-```
-cat <<EOF > ./requirements.yaml
-roles:
-- src: git@codehub.sva.de:Lab/stuttgart-things/supporting-roles/download-install-binary.git
+- src: https://github.com/stuttgart-things/download-install-binary.git
   scm: git
 
 collections:
@@ -107,6 +94,6 @@ BSD
 Author Information
 ------------------
 
-Xiaomin Lai, 03/2020, xiaomin.lai@sva.de
+Xiaomin Lai, 03/2020, xiaomin.lai@sva.de, Stuttgart-Things
 
-Patrick Hermann, 03/2020, patrick.hermann@sva.de
+Patrick Hermann, 03/2020, patrick.hermann@sva.de, Stuttgart-Things
