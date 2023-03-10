@@ -2,14 +2,15 @@
 - name: Which {{ item.value.bin_name }}
   ansible.builtin.shell: which {{ item.value.bin_name }}
   register: res_path
-  changed_when: False
-  failed_when: False
+  changed_when: false
+  failed_when: false
 
 - name: Is the package {{ item.value.bin_name }} installed?
   ansible.builtin.set_fact: 
-    is_installed: "{{ res_path.stdout|length > 0 }}"
+    is_installed: "{{ res_path.stdout | length > 0 }}"
 
-- ansible.builtin.set_fact:
+- name: Set vars
+  ansible.builtin.set_fact:
     myvar: '{{ item.value.bin_dir }}{{item.value.bin_name}}'
 
 - name: Is the package installed in {{ item.value.bin_dir }}?

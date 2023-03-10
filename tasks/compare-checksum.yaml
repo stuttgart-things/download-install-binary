@@ -18,10 +18,10 @@
       when: (item.value.md5_checksum != status_checksum.stat.checksum )
 
     - name: Set checksum_wrong vars to true if checksum not valid
-      ansible.builtin.set_fact: 
+      ansible.builtin.set_fact:
         checksum_wrong: true
       when: (item.value.md5_checksum != status_checksum.stat.checksum )
-      
+
     - name: Check if checksum is valid
       ansible.builtin.debug:
         msg: "Checksum is valid"
