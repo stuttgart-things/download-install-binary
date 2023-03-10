@@ -5,32 +5,32 @@
     state: directory
     mode: '1777'
 
-- name: download -- {{ item.value.bin_name }}
+- name: Download -- {{ item.value.bin_name }}
   ansible.builtin.get_url:
     url: "{{ item.value.source_url }}"
     dest: "{{ download_dir }}"
-    validate_certs: no
+    validate_certs: false
   when: "'zip' not in item.value.source_url and 'tar' not in item.value.source_url"
   tags: download
 
-- name: download and unarchive -- {{ item.value.bin_name }}
+- name: Download and unarchive -- {{ item.value.bin_name }}
   ansible.builtin.unarchive:
     src: "{{ item.value.source_url }}"
     dest: "{{ download_dir }}"
-    validate_certs: no
-    remote_src: yes
+    validate_certs: false
+    remote_src: true
   when: "'.zip' in item.value.source_url or '.tar' in item.value.source_url"
   tags: download
 
-- name: copy binary -- {{ item.value.bin_name }}
+- name: Copy binary -- {{ item.value.bin_name }}
   ansible.builtin.copy:
     src: "{{ download_dir }}/{{ item.value.bin_to_copy }}"
     dest: "{{ item.value.bin_dir }}"
     mode: 0755
-    remote_src: yes
-  become: yes
+    remote_src: true
+  become: true
 
-- name: delete downloading dir -- {{ item.value.bin_name }}
+- name: Delete downloading dir -- {{ item.value.bin_name }}
   ansible.builtin.file:
     path: "{{ download_dir }}/{{ item.value.to_remove }}"
     state: absent

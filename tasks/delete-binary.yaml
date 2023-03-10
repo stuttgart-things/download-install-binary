@@ -1,5 +1,5 @@
 ---
-- name: delete -- {{ item.value.bin_name }}
+- name: Delete -- {{ item.value.bin_name }}
   ansible.builtin.file:
     path: "{{ item.value.bin_dir }}/{{ item.value.bin_name }}"
     state: absent

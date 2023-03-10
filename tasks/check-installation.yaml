@@ -6,13 +6,13 @@
   failed_when: false
 
 - name: Is the package {{ item.value.bin_name }} installed?
-  ansible.builtin.set_fact: 
+  ansible.builtin.set_fact:
     is_installed: "{{ res_path.stdout | length > 0 }}"
 
 - name: Set vars
   ansible.builtin.set_fact:
-    myvar: '{{ item.value.bin_dir }}{{item.value.bin_name}}'
+    myvar: '{{ item.value.bin_dir }}{{ item.value.bin_name }}'
 
 - name: Is the package installed in {{ item.value.bin_dir }}?
-  ansible.builtin.set_fact: 
-    is_in_bin_dir: "{{ res_path.stdout==myvar }}"
+  ansible.builtin.set_fact:
+    is_in_bin_dir: "{{ res_path.stdout == myvar }}"

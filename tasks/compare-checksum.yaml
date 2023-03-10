@@ -15,15 +15,15 @@
     - name: Check if checksum is wrong
       ansible.builtin.debug:
         msg: "Checksum is not valid set wrong flag"
-      when: (item.value.md5_checksum != status_checksum.stat.checksum )
+      when: ( item.value.md5_checksum != status_checksum.stat.checksum )
 
     - name: Set checksum_wrong vars to true if checksum not valid
       ansible.builtin.set_fact:
         checksum_wrong: true
-      when: (item.value.md5_checksum != status_checksum.stat.checksum )
+      when: ( item.value.md5_checksum != status_checksum.stat.checksum )
 
     - name: Check if checksum is valid
       ansible.builtin.debug:
         msg: "Checksum is valid"
-      when: (item.value.md5_checksum == status_checksum.stat.checksum )
+      when: ( item.value.md5_checksum == status_checksum.stat.checksum )
   when: status_checksum.stat.exists | bool
