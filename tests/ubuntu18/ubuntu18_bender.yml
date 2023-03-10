@@ -1,5 +1,5 @@
 ---
-- name: download_binary test 
+- name: download_binary test
   hosts: all
   vars:
 

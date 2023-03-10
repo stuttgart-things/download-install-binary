@@ -17,5 +17,5 @@
 
 - name: Include download tasks
   ansible.builtin.include_tasks: download-copy-binary.yaml
-  when: ( wanted_state=="present" ) and 
+  when: ( wanted_state=="present" ) and
         ( (versions_match is not defined) or (not versions_match) ) or checksum_wrong | bool
