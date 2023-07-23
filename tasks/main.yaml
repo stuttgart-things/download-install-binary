@@ -8,7 +8,7 @@
 
 - name: Include tasks for deleting binarys
   ansible.builtin.include_tasks: delete-binary.yaml
-  when: is_in_bin_dir and ( wanted_state =="absent" ) or checksum_wrong | bool
+  when: is_in_bin_dir and ( wanted_state =="absent" ) or checksum_wrong|bool
 
 - name: Include binary check tasks
   ansible.builtin.include_tasks: check-binary-version.yaml
@@ -18,4 +18,4 @@
 - name: Include download tasks
   ansible.builtin.include_tasks: download-copy-binary.yaml
   when: ( wanted_state=="present" ) and
-        ( (versions_match is not defined) or (not versions_match) ) or checksum_wrong | bool
+        ( (versions_match is not defined) or (not versions_match) ) or checksum_wrong|bool
