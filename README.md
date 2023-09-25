@@ -74,7 +74,7 @@ Example Playbook
   tasks:
     - name: call role download_binary in a loop
       include_role:
-        name: download_binary
+        name: download-install-binary
       loop: "{{ lookup('dict', bin, wantlist=True) }}"
 ```
 
