@@ -24,15 +24,10 @@ roles:
 collections:
 - name: community.general
 EOF
+
 ansible-galaxy install -r ./requirements.yaml --force && ansible-galaxy collection install -r ./requirements.yaml -f
 ```
 </details>
-
-Requirements
-------------
-
-- unzip
-- curl or wget
 
 Role Variables
 --------------
