@@ -72,8 +72,8 @@ enable_list:
 warn_list:
   - skip_this_tag
   - experimental # experimental is included in the implicit list
-  # - role-name
-  # - yaml[document-start]  # you can also use sub-rule matches
+  - role-name
+  - yaml[document-start]  # you can also use sub-rule matches
 
 # Some rules can transform files to fix (or make it easier to fix) identified
 # errors. `ansible-lint --fix` will reformat YAML files and run these transforms.
