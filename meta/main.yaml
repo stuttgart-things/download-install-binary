@@ -1,6 +1,6 @@
 galaxy_info:
   author: Xiaomin Lai
-  description: A generic ansible role for downloading, unarchiving and moving the binary.
+  description: generic role for downloading, unarchiving and moving a binary
   company: Stuttgart-Things
 
   # If the issue tracker for your role is not on github, uncomment the
