@@ -7,5 +7,4 @@ on:
     
 jobs:
   linting:
-    uses: stuttgart-things/stuttgart-things/.github/workflows/ansible-lint.yaml
-@main
+    uses: stuttgart-things/stuttgart-things/.github/workflows/ansible-lint.yaml@main
