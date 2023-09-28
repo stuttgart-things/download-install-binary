@@ -1,5 +1,0 @@
----
-include:
-  - project: Lab/stuttgart-things/stuttgart-things
-    file: build/gitlab/ansible-role-pipeline.yaml
-    ref: master
