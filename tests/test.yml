@@ -23,6 +23,6 @@
 
   tasks:
     - name: Start testing download_binary in a loop
-      include_role:
+      ansible.builtin.include_role:
         name: download_binary
       loop: "{{ lookup('dict', cli, wantlist=True) }}"
