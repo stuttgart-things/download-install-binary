@@ -1,6 +1,6 @@
 ---
 - name: Which {{ item.value.bin_name }}
-  ansible.builtin.shell: which {{ item.value.bin_name }}
+  ansible.builtin.command: "which {{ item.value.bin_name }}"
   register: res_path
   changed_when: false
   failed_when: false
@@ -11,7 +11,7 @@
 
 - name: Set vars
   ansible.builtin.set_fact:
-    install_dir: '{{ item.value.bin_dir }}{{ item.value.bin_name }}'
+    install_dir: '{{ item.value.bin_dir }}/{{ item.value.bin_name }}'
 
 - name: Is the package installed in {{ item.value.bin_dir }}?
   ansible.builtin.set_fact:
