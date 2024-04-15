@@ -51,8 +51,9 @@ use_default_rules: true
 # When putting ignores inside the ignore file, they are marked as ignored, but
 # still visible, making it easier to address later.
 skip_list:
-  - name[prefix] # Rule for checking task and play names
+  - name[prefix] # Rule for checking task and subtask names (not the same)
   - name[play] # Rule for checking if all plays have names (not test.yml)
+  - name[template] # Rule that only allows Jinja2 at the end of task names
   - yaml[line-length] # Rule for checking if the line is longer than 110 characters
   - key-order[task] # Rule for checking your Task order to: name, when, block
   - meta-incorrect # Rule for checking if meta config doesn't have default values
