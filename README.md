@@ -129,7 +129,7 @@ Run playbook command:
 ```
 ansible-playbook -vvv -i ~[/path/to/inventory-file]/download-install-binary/tests/inventory ~[/path/to/playbook-file]/download-install-binary/tests/test.yml
 ```
-<details>
+</details>
 
 Role history
 ----------------
