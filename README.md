@@ -127,7 +127,7 @@ Example Playbook for tar.gz-file
 ### Run playbook command:
 <details><summary><b>Example command to run the playbook (expand here)</b></summary>
 ```
-ansible-playbook -vvv -i ~[/path/to/inventory-file]/download-install-binary/tests/inventory ~[/path/to/playbook-file]/download-install-binary/tests/test.yml
+ansible-playbook -vvv -i ~/path/to/inventory-file/download-install-binary/tests/inventory ~/path/to/playbook-file/download-install-binary/tests/test.yml
 ```
 </details>
 
