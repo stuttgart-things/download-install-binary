@@ -51,7 +51,11 @@ use_default_rules: true
 # When putting ignores inside the ignore file, they are marked as ignored, but
 # still visible, making it easier to address later.
 skip_list:
-  - skip_this_tag
+  - name[prefix] # Rule for checking task and play names
+  - name[play] # Rule for checking if all plays have names (not test.yml)
+  - yaml[line-length] # Rule for checking if the line is longer than 110 characters
+  - key-order[task] # Rule for checking your Task order to: name, when, block
+  - meta-incorrect # Rule for checking if meta config doesn't have default values
 
 # Ansible-lint does not automatically load rules that have the 'opt-in' tag.
 # You must enable opt-in rules by listing each rule 'id' below.
@@ -60,7 +64,6 @@ enable_list:
   - empty-string-compare # opt-in
   - no-log-password # opt-in
   - no-same-owner # opt-in
-  - name[prefix] # opt-in
   # add yaml here if you want to avoid ignoring yaml checks when yamllint
   # library is missing. Normally its absence just skips using that rule.
   - yaml
