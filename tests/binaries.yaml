@@ -10,7 +10,7 @@ cli:
     bin_dir: "/usr/local/bin"
     version_cmd: " version --client-only"
     target_version: v1.13.1
-    md5_checksum: "5dc0ffcb56ae703230d030e6ce490a0e0c933e73745a84dd216677ba877a6f49"
+    md5_checksum: "30ab57f9520ae2318ab28eefbc81728c"
 
   terraform:
     bin_name: "terraform"
@@ -22,7 +22,7 @@ cli:
     bin_dir: "/usr/local/bin"
     version_cmd: " --version"
     target_version: v1.8.0
-    md5_checksum: "dcc4670379a22213e72faa6cb709b3391e7e54967e40288ecf591e2b83cfd39e"
+    md5_checksum: "2c6638e53cf5474c4d1363c17e8653ef"
 
   helm:
     bin_name: "helm"
@@ -34,7 +34,7 @@ cli:
     bin_dir: "/usr/local/bin"
     version_cmd: " version"
     target_version: v3.14.3
-    md5_checksum: "3c90f24e180f8c207b8a18e5ec82cb0fa49858a7a0a86e4ed52a98398681e00b"
+    md5_checksum: "8dd2ecdbb70ef4e3a55083e8d5ebf352"
 
   kubectl:
     bin_name: "kubectl"
@@ -46,7 +46,7 @@ cli:
     bin_dir: "/usr/local/bin"
     version_cmd: " version --client"
     target_version: v1.29.3
-    md5_checksum: "89c0435cec75278f84b62b848b8c0d3e15897d6947b6c59a49ddccd93d7312bf"
+    md5_checksum: "07b43208389cbc779941b94a05cf89bc"
 
   packer:
     bin_name: "packer"
@@ -58,7 +58,7 @@ cli:
     bin_dir: "/usr/local/bin"
     version_cmd: " --version"
     target_version: v1.10.2
-    md5_checksum: "6ed412d212e6948f956a92099d6f941ddb470ff30ab40432622f5e68d594ec46"
+    md5_checksum: "374f22185f1f8cb25bc53187a2154ef0"
 
   k9s:
     bin_name: "k9s"
@@ -70,4 +70,4 @@ cli:
     bin_dir: "/usr/local/bin"
     version_cmd: " version --short"
     target_version: v0.32.4
-    md5_checksum: "d62611d9be2c35b782a765e98421500196acbf8be844cd3d9e32d4fa7846da05"
+    md5_checksum: "04ba6f524a433f8ceb9095c4c8292240"
