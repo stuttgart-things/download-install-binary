@@ -1,6 +1,10 @@
 stuttgart-things/download-install-binary 
 =======================
 
+TODO: SHORT SUMMARY WHAT ROLE IS DOING 2-3 SENTENCES
+
+<details><summary>ROLE DESCRIPTION</summary>
+
 This role includes the following tasks:
 - check whether the binary has been installed, and whether it locates in the ```bin_dir```
 - Install (when ```wanted_state="present"```, default) or delete (when ```wanted_state="absent"```) the binary file. The parameter ```wanted_state``` is usually overwriten by a config-file, e.g. cherry file.
@@ -11,6 +15,23 @@ The process of installing binary:
 - copy -> copy the binary to bin-folder
 - remove -> remove the downloaded directory.
 
+</details>
+
+
+<details><summary>ROLE VARIABLES</summary>
+
+The role takes in a python dictionary with the following values: 
+* bin_name: binary name
+* bin_version: binary version
+* source_url: the link to the installation file
+* bin_to_copy: path of the binary, which will be copied to bin-folder
+* to_remove: path of the downloaded and unpacked installation file, which will be removed
+* bin_dir: directory of the bin-folder, usually "/usr/bin/" or "/usr/local/bin/".
+* version_cmd: command to get current binary version
+* target_version: binary version value to compare with current binary version
+* md5_checksum: hash of current binary version
+
+</details>
 
 <details><summary>ROLE INSTALLATION</summary>
 
@@ -31,21 +52,6 @@ ansible-galaxy collection install -r ./requirements.yaml -f
 
 </details>
 
-<details><summary>ROLE VARIABLES</summary>
-
-The role takes in a python dictionary with the following values: 
-* bin_name: binary name
-* bin_version: binary version
-* source_url: the link to the installation file
-* bin_to_copy: path of the binary, which will be copied to bin-folder
-* to_remove: path of the downloaded and unpacked installation file, which will be removed
-* bin_dir: directory of the bin-folder, usually "/usr/bin/" or "/usr/local/bin/".
-* version_cmd: command to get current binary version
-* target_version: binary version value to compare with current binary version
-* md5_checksum: hash of current binary version
-
-</details>
-
 <details><summary>EXAMPLE INVENTORY</summary>
 
 ```bash
@@ -57,7 +63,7 @@ EOF
 
 </details>
 
-<details><summary>EXAMPLE PLAYBOOK</summary>
+<details><summary>EXAMPLE PLAYBOOK - BINARIES INLINE</summary>
 
 ```yaml
 cat <<EOF > download-install-binary.yaml
@@ -109,6 +115,12 @@ EOF
 
 </details>
 
+<details><summary>EXAMPLE PLAYBOOK - BINARIES FROM VARS FILE</summary>
+
+2x CAT EOF
+
+</details>
+
 <details><summary>EXAMPLE EXECUTION</summary>
 
 ```bash
@@ -124,7 +136,7 @@ ansible-playbook -i inv download-install-binary.yaml -vv -e wanted_state=absent
 
 ROLE HISTORY
 ----------------
-| date  | who | changelog |
+| DATE  | WHO | CHANGELOG |
 |---|---|---|
 |2020-03-30  | Xiaomin Lai | intial commit for this role in codehub
 |2020-04-10  | Patrick Hermann | added ability to download non zip and tar files
