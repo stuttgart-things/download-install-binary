@@ -1,7 +1,7 @@
 stuttgart-things/download-install-binary 
 =======================
 
-TODO: SHORT SUMMARY WHAT ROLE IS DOING 2-3 SENTENCES
+This Role downloads binaries and unarchives them for installation. It can also remove already installed binaries.
 
 <details><summary>ROLE DESCRIPTION</summary>
 
@@ -117,7 +117,97 @@ EOF
 
 <details><summary>EXAMPLE PLAYBOOK - BINARIES FROM VARS FILE</summary>
 
-2x CAT EOF
+```yaml
+cat <<EOF > binaries.yaml
+cli:
+  velero:
+    bin_name: "velero"
+    bin_version: "1.13.1"
+    check_bin_version_before_installing: true
+    source_url: "https://github.com/vmware-tanzu/velero/releases/download/v1.13.1/velero-v1.13.1-linux-amd64.tar.gz"
+    bin_to_copy: "velero-v1.13.1-linux-amd64/velero"
+    to_remove: "velero-v1.13.1-linux-amd64"
+    bin_dir: "/usr/local/bin"
+    version_cmd: " version --client-only"
+    target_version: v1.13.1
+    md5_checksum: "30ab57f9520ae2318ab28eefbc81728c"
+
+  terraform:
+    bin_name: "terraform"
+    bin_version: "1.8.0"
+    check_bin_version_before_installing: true
+    source_url: "https://releases.hashicorp.com/terraform/1.8.0/terraform_1.8.0_linux_amd64.zip"
+    bin_to_copy: "terraform"
+    to_remove: "terraform"
+    bin_dir: "/usr/local/bin"
+    version_cmd: " --version"
+    target_version: v1.8.0
+    md5_checksum: "2c6638e53cf5474c4d1363c17e8653ef"
+
+  helm:
+    bin_name: "helm"
+    bin_version: "3.14.3"
+    check_bin_version_before_installing: true
+    source_url: "https://get.helm.sh/helm-v3.14.3-linux-amd64.tar.gz"
+    bin_to_copy: "linux-amd64/helm"
+    to_remove: "linux-amd64"
+    bin_dir: "/usr/local/bin"
+    version_cmd: " version"
+    target_version: v3.14.3
+    md5_checksum: "8dd2ecdbb70ef4e3a55083e8d5ebf352"
+
+  kubectl:
+    bin_name: "kubectl"
+    bin_version: "1.29.3"
+    check_bin_version_before_installing: true
+    source_url: "https://dl.k8s.io/v1.29.3/bin/linux/amd64/kubectl"
+    bin_to_copy: "kubectl"
+    to_remove: "kubectl"
+    bin_dir: "/usr/local/bin"
+    version_cmd: " version --client"
+    target_version: v1.29.3
+    md5_checksum: "07b43208389cbc779941b94a05cf89bc"
+
+  packer:
+    bin_name: "packer"
+    bin_version: "1.10.2"
+    check_bin_version_before_installing: true
+    source_url: "https://releases.hashicorp.com/packer/1.10.2/packer_1.10.2_linux_amd64.zip"
+    bin_to_copy: "packer"
+    to_remove: "packer"
+    bin_dir: "/usr/local/bin"
+    version_cmd: " --version"
+    target_version: v1.10.2
+    md5_checksum: "374f22185f1f8cb25bc53187a2154ef0"
+
+  k9s:
+    bin_name: "k9s"
+    bin_version: "0.32.4"
+    check_bin_version_before_installing: true
+    source_url: "https://github.com/derailed/k9s/releases/download/v0.32.4/k9s_Linux_amd64.tar.gz"
+    bin_to_copy: "k9s"
+    to_remove: "k9s"
+    bin_dir: "/usr/local/bin"
+    version_cmd: " version --short"
+    target_version: v0.32.4
+    md5_checksum: "04ba6f524a433f8ceb9095c4c8292240"
+
+EOF
+```
+
+```yaml
+cat <<EOF > download-install-binary.yaml
+- hosts: all
+  become: true
+  vars_files:
+    - binaries.yaml
+
+  tasks:
+    - name: Start download_install_binary
+      ansible.builtin.include_role:
+        name: download-install-binary
+EOF
+```
 
 </details>
 
@@ -140,7 +230,8 @@ ROLE HISTORY
 |---|---|---|
 |2020-03-30  | Xiaomin Lai | intial commit for this role in codehub
 |2020-04-10  | Patrick Hermann | added ability to download non zip and tar files
-|2020-10-23   | Christian Mueller | Updated for using of ansible collections, fixed role structure
+|2020-10-23  | Christian Mueller | Updated for using of ansible collections, fixed role structure
+|2024-04-17  | Andre Ebert | Changed role structure and added linter skip rules.
 
 ## License
 <details><summary>LICENSE</summary>
@@ -166,3 +257,5 @@ Author Information
 Xiaomin Lai, 03/2020, xiaomin.lai@sva.de, Stuttgart-Things
 
 Patrick Hermann, 03/2020, patrick.hermann@sva.de, Stuttgart-Things
+
+Andre Ebert, 04/2024, andre.ebert@sva.de, Stuttgart-Things
