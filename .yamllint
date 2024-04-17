@@ -9,7 +9,5 @@ rules:
   indentation: enable
 
   # don't bother me with this rule
-  comments:
-    level: warning
-  comments-indentation:
-    level: warning
+  comments: disable
+  comments-indentation: disable
