@@ -6,8 +6,6 @@ rules:
   line-length:
     max: 110
     level: warning
-  indentation: enable
 
   # don't bother me with this rule
-  comments: disable
-  comments-indentation: disable
+  indentation: enable
