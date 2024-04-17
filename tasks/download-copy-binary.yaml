@@ -10,6 +10,7 @@
     url: "{{ item.value.source_url }}"
     dest: "{{ download_dir }}"
     validate_certs: false
+    mode: '1777'
   when: "'zip' not in item.value.source_url and 'tar' not in item.value.source_url"
   tags: download
 

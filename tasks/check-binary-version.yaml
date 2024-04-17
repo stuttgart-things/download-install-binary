@@ -1,6 +1,6 @@
 ---
 - name: Check installed version of {{ item.value.bin_name }}
-  ansible.builtin.command: "{{ item.value.bin_name }} {{ version_cmd }}"
+  ansible.builtin.command: "{{ item.value.bin_name }} {{ item.value.version_cmd }}"
   register: result_c
   changed_when: false
   failed_when: false
