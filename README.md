@@ -254,8 +254,8 @@ limitations under the License.
 Author Information
 ------------------
 
+```yaml
 Xiaomin Lai, 03/2020, xiaomin.lai@sva.de, Stuttgart-Things
-
 Patrick Hermann, 03/2020, patrick.hermann@sva.de, Stuttgart-Things
-
 Andre Ebert, 04/2024, andre.ebert@sva.de, Stuttgart-Things
+```
