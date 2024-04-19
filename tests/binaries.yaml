@@ -1,5 +1,5 @@
 ---
-cli:
+bin:
   velero:
     bin_name: "velero"
     bin_version: "1.13.1"
