@@ -1,4 +1,4 @@
-stuttgart-things/download-install-binary 
+stuttgart-things/download-install-binary
 =======================
 
 This Role downloads binaries and unarchives them for installation. It can also remove already installed binaries.
@@ -20,7 +20,7 @@ The process of installing binary:
 
 <details><summary>ROLE VARIABLES</summary>
 
-The role takes in a python dictionary with the following values: 
+The role takes in a python dictionary with the following values:
 * bin_name: binary name
 * bin_version: binary version
 * source_url: the link to the installation file
@@ -71,7 +71,7 @@ cat <<EOF > download-install-binary.yaml
   become: true
   vars:
     download_dir: "/tmp/downloads" # dir will be created if it doesent exists
-    cli:
+    bin:
       kubectl:
         bin_name: "kubectl"
         bin_version: "1.29.3"
@@ -119,7 +119,7 @@ EOF
 
 ```yaml
 cat <<EOF > binaries.yaml
-cli:
+bin:
   velero:
     bin_name: "velero"
     bin_version: "1.13.1"
