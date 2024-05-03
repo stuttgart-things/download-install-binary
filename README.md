@@ -211,6 +211,33 @@ EOF
 
 </details>
 
+<details><summary>GET MD5 FROM INSTALLED BINARY</summary>
+
+```yaml
+cat <<EOF > get-md5.yaml
+---
+- hosts: "{{ target_host | default('all') }}"
+  become: true
+  vars:
+    bin_dir: /usr/local/bin
+    binary_name: nerdctl
+
+  tasks:
+    - name: "Calculate MD5 Checksum from file {{ item.value.bin_dir }}/{{ item.value.bin_name }}"
+      ansible.builtin.stat:
+        path: "{{ bin_dir }}/{{ binary_name }}"
+        checksum_algorithm: md5
+      register: status_checksum
+
+    - name: Output checksum
+      ansible.builtin.debug:
+        var: status_checksum.stat.checksum
+EOF
+```
+
+</details>
+
+
 <details><summary>EXAMPLE EXECUTION</summary>
 
 ```bash
@@ -219,6 +246,9 @@ ansible-playbook -i inv download-install-binary.yaml -vv
 
 # UNINSTALL BINARIES
 ansible-playbook -i inv download-install-binary.yaml -vv -e wanted_state=absent
+
+# GET MD5
+ansible-playbook -i inv get-md5.yaml -vv
 ```
 
 </details>
