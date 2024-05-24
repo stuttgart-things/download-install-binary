@@ -3,14 +3,14 @@ name: Ansible lint
 on:
   push:
     branches:
-    - main
-    - feature/*
-    - fix/*
+      - 'main'
+      - 'feature/**'
+      - 'fix/**'
   pull_request:
     branches:
-    - main
-    - feature/*
-    - fix/*
+      - 'main'
+      - 'feature/**'
+      - 'fix/**'
   workflow_dispatch:
 
 jobs:
