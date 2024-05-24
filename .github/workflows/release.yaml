@@ -20,5 +20,5 @@ jobs:
       release-message: "${{ github.event.inputs.release-message }}"
       environment-name: k8s
       archive-kind: tar.gz
-      runs-on: ghr-download-install-binary-cicd
+      runs-on: ghr-download-install-binary-labda-test
       continue-error: false
