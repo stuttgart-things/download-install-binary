@@ -5,6 +5,14 @@
     state: directory
     mode: '1777'
 
+- name: Install unzip
+  ansible.builtin.include_role:
+    name: install-requirements
+  vars:
+    os_packages:
+      - unzip
+  when: "'zip' in item.value.source_url"
+
 - name: Download -- {{ item.value.bin_name }}
   ansible.builtin.get_url:
     url: "{{ item.value.source_url }}"
