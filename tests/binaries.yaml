@@ -66,3 +66,13 @@ bin:
     version_cmd: " version --short"
     target_version: v0.32.4
     #md5_checksum: "04ba6f524a433f8ceb9095c4c8292240"
+  glab:
+    bin_name: "glab"
+    bin_version: "1.46.0"
+    check_bin_version_before_installing: true
+    source_url: "https://gitlab.com/gitlab-org/cli/-/releases/v1.46.0/downloads/glab_1.46.0_Linux_x86_64.tar.gz"
+    bin_to_copy: "glab"
+    to_remove: "glab"
+    bin_dir: "/usr/local/bin"
+    version_cmd: " version"
+    target_version: v1.46.0
