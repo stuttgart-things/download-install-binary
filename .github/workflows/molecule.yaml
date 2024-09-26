@@ -5,7 +5,7 @@ on:
 
 jobs:
   molecule:
-    runs-on: docker-group
+    runs-on: docker
     strategy:
       fail-fast: false
       matrix:
