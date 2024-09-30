@@ -42,6 +42,6 @@ jobs:
     with:
       runs-on: docker
       environment-name: k8s
-      scenario_names: default
-      molecule_command: test
+      scenario-names: default
+      molecule-command: test
     needs: ansible-lint
