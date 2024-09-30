@@ -4,8 +4,7 @@ vars:
   BRANCH:
     sh: if [ $(git rev-parse --abbrev-ref HEAD) != "main" ]; then echo $(git rev-parse --abbrev-ref HEAD); else echo main ; fi
 
-
-# Define a precondition to check if the virtual environment is activated
+# PRECONDITION TO CHECK IF THE VIRTUAL ENVIRONMENT IS ACTIVATED
 venv-precondition: &venv
   - sh: |
       pip -V | grep '.venv' >/dev/null 2>&1
