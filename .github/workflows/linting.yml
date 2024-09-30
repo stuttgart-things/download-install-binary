@@ -32,6 +32,16 @@ jobs:
       runs-on: ghr-download-install-binary-skyami-cicd
       environment-name: k8s
       continue-error: true
-      ansible-image: eu.gcr.io/stuttgart-things/sthings-ansible:9.3.0-1
+      ansible-image: eu.gcr.io/stuttgart-things/sthings-ansible:10.3.0
       playbook: tests/test.yml
     needs: yaml-lint
+
+  molecule-test:
+    name: Test ansible code w/ molecule
+    uses: stuttgart-things/stuttgart-things/.github/workflows/call-moluecule-test.yaml@main # ansible-lint-24.2.1
+    with:
+      runs-on: docker
+      environment-name: k8s
+      scenario_names: default
+      molecule_command: test
+    needs: ansible-lint
