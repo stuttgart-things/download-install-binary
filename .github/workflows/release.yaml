@@ -17,10 +17,10 @@ jobs:
     name: Release
     uses: stuttgart-things/github-workflow-templates/.github/workflows/call-release-module.yaml@feature/add-homerun-task-go # ansible-lint-24.2.1
     with:
-      module-name: install-configure-docker
+      module-name: download-install-binary
       tag-name: "${{ github.event.inputs.release-tag }}"
       release-message: "${{ github.event.inputs.release-message }}"
       environment-name: k8s
       archive-kind: tar.gz
-      runs-on: ghr-install-configure-docker-skyami-cicd
+      runs-on: ghr-download-install-binary-skyami-cicd
       continue-error: false
