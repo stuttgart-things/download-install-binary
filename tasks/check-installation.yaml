@@ -1,11 +1,11 @@
 ---
-- name: Which {{ item.value.bin_name }}
+- name: "Which {{ item.value.bin_name }}"
   ansible.builtin.command: "which {{ item.value.bin_name }}"
   register: res_path
   changed_when: false
   failed_when: false
 
-- name: Is the package {{ item.value.bin_name }} installed?
+- name: "Is the package {{ item.value.bin_name }} installed?"
   ansible.builtin.set_fact:
     is_installed: "{{ res_path.stdout | length > 0 }}"
 
@@ -13,6 +13,6 @@
   ansible.builtin.set_fact:
     install_dir: '{{ item.value.bin_dir }}/{{ item.value.bin_name }}'
 
-- name: Is the package installed in {{ item.value.bin_dir }}?
+- name: "Is the package installed in {{ item.value.bin_dir }}?"
   ansible.builtin.set_fact:
     is_in_bin_dir: "{{ res_path.stdout == install_dir }}"

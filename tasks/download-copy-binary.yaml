@@ -13,7 +13,7 @@
       - unzip
   when: "'zip' in item.value.source_url"
 
-- name: Download -- {{ item.value.bin_name }}
+- name: "Download -- {{ item.value.bin_name }}"
   ansible.builtin.get_url:
     url: "{{ item.value.source_url }}"
     dest: "{{ download_dir }}"
@@ -22,7 +22,7 @@
   when: "'zip' not in item.value.source_url and 'tar' not in item.value.source_url"
   tags: download
 
-- name: Download and unarchive -- {{ item.value.bin_name }}
+- name: "Download and unarchive -- {{ item.value.bin_name }}"
   ansible.builtin.unarchive:
     src: "{{ item.value.source_url }}"
     dest: "{{ download_dir }}"
@@ -31,7 +31,7 @@
   when: "'.zip' in item.value.source_url or '.tar' in item.value.source_url"
   tags: download
 
-- name: Copy binary -- {{ item.value.bin_name }}
+- name: "Copy binary -- {{ item.value.bin_name }}"
   ansible.builtin.copy:
     src: "{{ download_dir }}/{{ item.value.bin_to_copy }}"
     dest: "{{ item.value.bin_dir }}"
@@ -39,7 +39,7 @@
     remote_src: true
   become: true
 
-- name: Delete downloading dir -- {{ item.value.bin_name }}
+- name: "Delete downloading dir -- {{ item.value.bin_name }}"
   ansible.builtin.file:
     path: "{{ download_dir }}/{{ item.value.to_remove }}"
     state: absent
