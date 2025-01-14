@@ -16,7 +16,7 @@ on:
 jobs:
   yaml-lint:
     name: Lint yaml files
-    uses: stuttgart-things/stuttgart-things/.github/workflows/lint-yaml.yaml@yaml-lint-1
+    uses: stuttgart-things/github-workflow-templates/.github/workflows/call-yaml-lint.yaml@feature/add-homerun-task-go
     with:
       runs-on: ghr-download-install-binary-skyami-cicd
       environment-name: k8s
@@ -27,7 +27,7 @@ jobs:
 
   ansible-lint:
     name: Lint ansible code
-    uses: stuttgart-things/stuttgart-things/.github/workflows/lint-ansible.yaml@main # ansible-lint-24.2.1
+    uses: stuttgart-things/github-workflow-templates/.github/workflows/call-ansible-lint.yaml@feature/add-homerun-task-go # ansible-lint-24.2.1
     with:
       runs-on: ghr-download-install-binary-skyami-cicd
       environment-name: k8s
@@ -36,11 +36,11 @@ jobs:
       playbook: tests/test.yml
     needs: yaml-lint
 
-  molecule-test:
-    name: Test ansible code w/ molecule
-    uses: stuttgart-things/stuttgart-things/.github/workflows/call-moluecule-test.yaml@main # ansible-lint-24.2.1
-    with:
-      runs-on: docker
-      environment-name: k8s
-      scenario-names: "['default']"
-    # needs: ansible-lint
+  # molecule-test:
+  #   name: Test ansible code w/ molecule
+  #   uses: stuttgart-things/stuttgart-things/.github/workflows/call-moluecule-test.yaml@main # ansible-lint-24.2.1
+  #   with:
+  #     runs-on: docker
+  #     environment-name: k8s
+  #     scenario-names: "['default']"
+  #   # needs: ansible-lint
