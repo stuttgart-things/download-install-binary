@@ -31,14 +31,33 @@
   when: "'.zip' in item.value.source_url or '.tar' in item.value.source_url"
   tags: download
 
+# New additions
+- name: "Stop and disable buildkitd service"
+  ansible.builtin.systemd_service:
+    name: buildkit
+    state: stopped
+    enabled: false
+    masked: true
+  become: true
+- name: Kill any running buildkitd process
+  ansible.builtin.shell: |
+    pkill -9 buildkitd || true
+  become: true
+- name: Wait for process to stop
+  ansible.builtin.wait_for:
+    path: /usr/local/bin/buildkitd
+    state: absent
+    timeout: 10
+  become: true
+# End of new additions
+
 - name: "Copy binary -- {{ item.value.bin_name }}"
   ansible.builtin.copy:
     src: "{{ download_dir }}/{{ item.value.bin_to_copy }}"
     dest: "{{ item.value.bin_dir }}"
     mode: 0755
     remote_src: true
-    # Forcing to copy the binary
-    force: true
+    force: true # Forcing to copy the binary
   become: true
 
 - name: "Delete downloading dir -- {{ item.value.bin_name }}"
