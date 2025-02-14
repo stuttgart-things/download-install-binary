@@ -1,4 +1,4 @@
 ---
-- name: Call substitute for main.yaml in a loop
+- name: Call main.yaml in a loop
   ansible.builtin.include_tasks: all-tasks.yaml
   loop: "{{ lookup('dict', bin, wantlist=True) }}"
