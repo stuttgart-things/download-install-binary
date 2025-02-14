@@ -1,7 +1,7 @@
 stuttgart-things/download-install-binary
 =======================
 
-This Role downloads binaries and unarchives them for installation. It can also remove already installed binaries.
+This Role downloads binaries and unarchives them for installation. It can also remove installed binaries.
 
 <details><summary>ROLE DESCRIPTION</summary>
 
