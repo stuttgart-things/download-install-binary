@@ -4,6 +4,7 @@ dependency:
   name: galaxy
   options:
     ignore-errors: true
+
 driver:
   name: docker
 platforms:
@@ -19,6 +20,9 @@ provisioner:
   name: ansible
   playbooks:
     converge: ${MOLECULE_PLAYBOOK:-converge.yml}
+  config_options:
+      defaults:
+        role_name_check: 0  # Disables role name validation
 
 verifier:
   name: ansible
