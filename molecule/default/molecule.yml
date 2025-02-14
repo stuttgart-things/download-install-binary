@@ -5,7 +5,7 @@ dependency:
   options:
     ignore-errors: true
     role-file: requirements.yml
-    collections-file: collections/requirements.yml
+    #collections-file: collections/requirements.yml
 
 driver:
   name: docker
