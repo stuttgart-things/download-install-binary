@@ -36,11 +36,11 @@ jobs:
       playbook: tests/test.yml
     needs: yaml-lint
 
-  # molecule-test:
-  #   name: Test ansible code w/ molecule
-  #   uses: stuttgart-things/stuttgart-things/.github/workflows/call-moluecule-test.yaml@main # ansible-lint-24.2.1
-  #   with:
-  #     runs-on: docker
-  #     environment-name: k8s
-  #     scenario-names: "['default']"
-  #   # needs: ansible-lint
+  molecule-test:
+    name: Test ansible code w/ molecule
+    uses: stuttgart-things/github-workflow-templates/.github/workflows/call-moluecule-test.yaml@feature/add-homerun-task-go # ansible-lint-24.2.1
+    with:
+      runs-on: dagger
+      environment-name: k8s
+      scenario-names: "['default']"
+    # needs: ansible-lint
