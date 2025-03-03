@@ -16,7 +16,7 @@ on:
 jobs:
   yaml-lint:
     name: Lint yaml files
-    uses: stuttgart-things/github-workflow-templates/.github/workflows/call-yaml-lint.yaml@feature/add-homerun-task-go
+    uses: stuttgart-things/github-workflow-templates/.github/workflows/call-yaml-lint.yaml@golang-1.24.0
     with:
       runs-on: ghr-download-install-binary-skyami-cicd
       environment-name: k8s
@@ -27,7 +27,7 @@ jobs:
 
   ansible-lint:
     name: Lint ansible code
-    uses: stuttgart-things/github-workflow-templates/.github/workflows/call-ansible-lint.yaml@feature/add-homerun-task-go # ansible-lint-24.2.1
+    uses: stuttgart-things/github-workflow-templates/.github/workflows/call-ansible-lint.yaml@golang-1.24.0
     with:
       runs-on: ghr-download-install-binary-skyami-cicd
       environment-name: k8s
@@ -38,7 +38,7 @@ jobs:
 
   molecule-test:
     name: Test ansible code w/ molecule
-    uses: stuttgart-things/github-workflow-templates/.github/workflows/call-moluecule-test.yaml@feature/add-homerun-task-go # ansible-lint-24.2.1
+    uses: stuttgart-things/github-workflow-templates/.github/workflows/call-moluecule-test.yaml@golang-1.24.0
     with:
       runs-on: dagger
       environment-name: k8s
