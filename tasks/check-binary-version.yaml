@@ -4,7 +4,9 @@
   register: result_c
   changed_when: false
   failed_when: false
-
+  when: item.value.version_cmd is defined
+  
 - name: Compare installed version and wanted version
   ansible.builtin.set_fact:
     versions_match: "{{ item.value.bin_version in result_c.stdout }}"
+  when: item.value.version_cmd is defined
