@@ -15,7 +15,7 @@ collections:
   - name: awx.awx
     version: 24.6.1
   - name: community.hashi_vault
-    version: 6.2.0
+    version: 7.1.0
   - name: ansible.netcommon
     version: 8.1.0
 
