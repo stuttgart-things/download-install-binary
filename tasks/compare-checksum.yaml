@@ -1,13 +1,13 @@
 ---
-- name: "Calculate MD5 Checksum from file {{ item.value.bin_dir }}/{{ item.value.bin_name }}"
+- name: "Calculate MD5 Checksum from file {{ install_path }}"
   ansible.builtin.stat:
-    path: "{{ item.value.bin_dir }}/{{ item.value.bin_name }}"
+    path: "{{ install_path }}"
     checksum_algorithm: md5
   register: status_checksum
 
 - name: Output checksum
   ansible.builtin.debug:
-    msg: "File: {{ item.value.bin_dir }}/{{ item.value.bin_name }} has MD5 checksum: {{ status_checksum.stat.checksum }} expected MD5: {{ item.value.md5_checksum }}"
+    msg: "File: {{ install_path }} has MD5 checksum: {{ status_checksum.stat.checksum }} expected MD5: {{ item.value.md5_checksum }}"
   when: status_checksum.stat.exists | bool
 
 - name: Checksum verify

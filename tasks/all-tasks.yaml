@@ -1,4 +1,20 @@
 ---
+- name: "Resolve installed binary path for {{ item.value.bin_name }}"
+  ansible.builtin.set_fact:
+    # download-copy-binary copies with `dest: bin_dir`. When bin_to_copy's
+    # basename differs from bin_name, the caller sets bin_dir to the full target
+    # FILE path (e.g. /usr/bin/yq) so `copy` renames the artifact to bin_name.
+    # In that case bin_dir already IS the installed path; otherwise bin_dir is a
+    # directory and the binary lands at bin_dir/bin_name. Detect via basename so
+    # every task below agrees on one path — previously check-installation,
+    # delete-binary and compare-checksum appended /bin_name unconditionally,
+    # yielding /usr/bin/yq/yq and crashing delete with "Not a directory" whenever
+    # /usr/bin/yq already existed as a file.
+    install_path: >-
+      {{ (item.value.bin_dir | regex_replace('/$', ''))
+         if ((item.value.bin_dir | regex_replace('/$', '') | basename) == item.value.bin_name)
+         else ((item.value.bin_dir | regex_replace('/$', '')) ~ '/' ~ item.value.bin_name) }}
+
 - name: Include checksum tasks
   ansible.builtin.include_tasks: compare-checksum.yaml
   when: item.value.md5_checksum is defined
