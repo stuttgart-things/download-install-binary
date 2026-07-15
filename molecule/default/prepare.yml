@@ -1,0 +1,19 @@
+---
+- name: Prepare
+  hosts: all
+  become: true
+  become_method: sudo
+  tasks:
+    # Fixture for the full-file-path convention (yq/kind): seed a pre-existing
+    # `yq` as a plain FILE at the exact bin_dir target. This is the condition
+    # that reproduced the original `/usr/bin/yq/yq` "[Errno 20] Not a directory"
+    # crash — the role must treat bin_dir as an existing file, not a directory,
+    # and reinstall over it. The stale version also forces the version-check /
+    # reinstall path to run.
+    - name: Seed a stale /usr/bin/yq binary (wrong version)
+      ansible.builtin.copy:
+        content: |
+          #!/bin/sh
+          echo "yq (stale seed) version v0.0.0"
+        dest: /usr/bin/yq
+        mode: "0755"

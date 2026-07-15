@@ -1,0 +1,62 @@
+---
+- name: Verify
+  hosts: all
+  become: true
+  become_method: sudo
+  tasks:
+    # --- Full-file-path convention (yq) ---------------------------------------
+    - name: Stat the full-file-path target /usr/bin/yq
+      ansible.builtin.stat:
+        path: /usr/bin/yq
+      register: yq_stat
+
+    - name: /usr/bin/yq must be a regular file, not a directory
+      ansible.builtin.assert:
+        that:
+          - yq_stat.stat.exists
+          - yq_stat.stat.isreg
+          - not yq_stat.stat.isdir
+        fail_msg: "/usr/bin/yq should be a regular file (full-file-path convention)"
+        success_msg: "/usr/bin/yq is a regular file"
+
+    # `stat` on /usr/bin/yq/yq raises ENOTDIR (bin_dir is a file), so probe with
+    # `test -e`, which just returns non-zero for the non-existent nested path.
+    - name: Probe the malformed nested path /usr/bin/yq/yq
+      ansible.builtin.command: test -e /usr/bin/yq/yq
+      register: yq_nested
+      changed_when: false
+      failed_when: false
+
+    - name: The malformed /usr/bin/yq/yq path must never be created
+      ansible.builtin.assert:
+        that:
+          - yq_nested.rc != 0
+        fail_msg: "/usr/bin/yq/yq exists — install_path regressed"
+        success_msg: "no /usr/bin/yq/yq — install_path resolves correctly"
+
+    - name: Run yq --version
+      ansible.builtin.command: yq --version
+      register: yq_ver
+      changed_when: false
+
+    - name: yq was reinstalled over the stale seed at the wanted version
+      ansible.builtin.assert:
+        that:
+          - "'v4.44.1' in yq_ver.stdout"
+          - "'v0.0.0' not in yq_ver.stdout"
+        fail_msg: "yq not reinstalled over the stale /usr/bin/yq seed: {{ yq_ver.stdout }}"
+        success_msg: "yq reinstalled over the stale seed: {{ yq_ver.stdout }}"
+
+    # --- Directory convention still works (regression guard) ------------------
+    - name: Stat a directory-convention binary (velero at bin_dir/bin_name)
+      ansible.builtin.stat:
+        path: /usr/local/bin/velero
+      register: velero_stat
+
+    - name: velero installed at /usr/local/bin/velero
+      ansible.builtin.assert:
+        that:
+          - velero_stat.stat.exists
+          - velero_stat.stat.isreg
+        fail_msg: "velero missing — directory convention regressed"
+        success_msg: "velero installed (directory convention intact)"
