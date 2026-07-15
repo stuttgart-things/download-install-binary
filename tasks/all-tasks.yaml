@@ -28,7 +28,12 @@
 
 - name: Include tasks for deleting binarys
   ansible.builtin.include_tasks: delete-binary.yaml
-  when: is_in_bin_dir and ( wanted_state =="absent" ) or checksum_wrong|bool or ( (versions_match is not defined) or (not versions_match) )
+  # Only remove a binary we manage when it should be absent. Reinstall
+  # (checksum/version mismatch) needs no pre-delete: download-copy-binary
+  # overwrites with force: true — and pre-deleting install_path was the step
+  # that crashed on the /usr/bin/yq file path. (Previously the `and`/`or`
+  # precedence meant is_in_bin_dir only guarded the `absent` branch anyway.)
+  when: wanted_state == "absent" and is_in_bin_dir
 
 - name: Include download tasks
   ansible.builtin.include_tasks: download-copy-binary.yaml
