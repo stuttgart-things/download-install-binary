@@ -8,5 +8,10 @@
   
 - name: Compare installed version and wanted version
   ansible.builtin.set_fact:
-    versions_match: "{{ item.value.bin_version in result_c.stdout }}"
+    # Contract: `<bin_name> <version_cmd>` must print the installed version
+    # somewhere in stdout (e.g. "... version v4.49.2"). Match bin_version as a
+    # whole version token, not a bare substring: the digit/dot lookarounds stop
+    # "1.2" from matching "1.2.3" or "11.2". regex_escape neutralises the dots.
+    versions_match: >-
+      {{ result_c.stdout is search('(?<![0-9.])' ~ (item.value.bin_version | regex_escape) ~ '(?![0-9.])') }}
   when: item.value.version_cmd is defined
