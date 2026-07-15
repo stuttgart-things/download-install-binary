@@ -38,3 +38,4 @@ scenario:
     - create
     - prepare
     - converge
+    - verify
