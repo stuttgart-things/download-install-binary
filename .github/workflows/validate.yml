@@ -32,7 +32,12 @@ jobs:
       runs-on: dagger-labda
       environment-name: k8s
       continue-error: true
-      ansible-image: eu.gcr.io/stuttgart-things/sthings-ansible:10.3.0
+      # ghcr, not eu.gcr.io: the Google Artifact Registry copy answers
+      # "Unauthenticated request" to every runner, so the job container never
+      # started and ansible-lint silently did not run — masked by
+      # continue-error below. 14.0.0 rather than a 10.3.0 equivalent because
+      # ghcr only carries the 14.x line, which is what the fleet runs today.
+      ansible-image: ghcr.io/stuttgart-things/sthings-ansible:14.0.0
       playbook: tests/test.yml
     needs: yaml-lint
 
