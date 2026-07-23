@@ -17,7 +17,7 @@ collections:
   - name: community.hashi_vault
     version: 7.1.0
   - name: ansible.netcommon
-    version: 8.6.0
+    version: 8.6.1
 
 roles:
   - src: https://github.com/stuttgart-things/install-requirements.git
