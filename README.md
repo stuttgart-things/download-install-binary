@@ -26,6 +26,12 @@ The role takes in a python dictionary with the following values:
 * source_url: the link to the installation file
 * bin_to_copy: path of the binary, which will be copied to bin-folder
 * to_remove: path of the downloaded and unpacked installation file, which will be removed
+
+Role-wide settings (defaults):
+
+* download_retries: attempts per download/unarchive before the task fails (default 3)
+* download_retry_delay: seconds between attempts (default 10)
+* download_timeout: get_url timeout in seconds (default 60; Ansible's own default is 10)
 * bin_dir: directory of the bin-folder, usually "/usr/bin/" or "/usr/local/bin/".
 * version_cmd: command to get current binary version
 * target_version: binary version value to compare with current binary version
