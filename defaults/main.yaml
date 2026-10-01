@@ -2,3 +2,9 @@
 checksum_wrong: false
 download_dir: /tmp/downloads
 wanted_state: present
+# A download that times out or resets is retried, not failed on the spot:
+# one hiccup on GitHub releases used to fail the whole play (and with it a
+# VM's AnsibleRun). get_url's own default timeout is 10 s.
+download_retries: 3
+download_retry_delay: 10
+download_timeout: 60
