@@ -1,7 +1,7 @@
 ---
 # .ansible-lint
 
-profile: null # min, basic, moderate,safety, shared, production
+profile: null  # min, basic, moderate,safety, shared, production
 
 # Allows dumping of results in SARIF format
 # sarif_file: result.sarif
@@ -10,7 +10,7 @@ profile: null # min, basic, moderate,safety, shared, production
 # and not relative to the CWD of execution. CLI arguments passed to the --exclude
 # option are parsed relative to the CWD of execution.
 exclude_paths:
-  - .cache/ # implicit unless exclude_paths is defined in config
+  - .cache/  # implicit unless exclude_paths is defined in config
   - test/fixtures/formatting-before/
   - test/fixtures/formatting-prettier/
 # parseable: true
@@ -26,8 +26,8 @@ mock_modules:
   - fake_namespace.fake_collection.fake_module.fake_submodule
 mock_roles:
   - mocked_role
-  - author.role_name # old standalone galaxy role
-  - fake_namespace.fake_collection.fake_role # role within a collection
+  - author.role_name  # old standalone galaxy role
+  - fake_namespace.fake_collection.fake_role  # role within a collection
 
 # Enable checking of loop variable prefixes in roles
 loop_var_prefix: "^(__|{role}_)"
@@ -51,20 +51,20 @@ use_default_rules: true
 # When putting ignores inside the ignore file, they are marked as ignored, but
 # still visible, making it easier to address later.
 skip_list:
-  - name[prefix] # Rule for checking task and subtask names (not the same)
-  - name[play] # Rule for checking if all plays have names (not test.yml)
-  - name[template] # Rule that only allows Jinja2 at the end of task names
-  - yaml[line-length] # Rule for checking if the line is longer than 110 characters
-  - key-order[task] # Rule for checking your Task order to: name, when, block
-  - meta-incorrect # Rule for checking if meta config doesn't have default values
+  - name[prefix]  # Rule for checking task and subtask names (not the same)
+  - name[play]  # Rule for checking if all plays have names (not test.yml)
+  - name[template]  # Rule that only allows Jinja2 at the end of task names
+  - yaml[line-length]  # Rule for checking if the line is longer than 110 characters
+  - key-order[task]  # Rule for checking your Task order to: name, when, block
+  - meta-incorrect  # Rule for checking if meta config doesn't have default values
 
 # Ansible-lint does not automatically load rules that have the 'opt-in' tag.
 # You must enable opt-in rules by listing each rule 'id' below.
 enable_list:
   - args
-  - empty-string-compare # opt-in
-  - no-log-password # opt-in
-  - no-same-owner # opt-in
+  - empty-string-compare  # opt-in
+  - no-log-password  # opt-in
+  - no-same-owner  # opt-in
   # add yaml here if you want to avoid ignoring yaml checks when yamllint
   # library is missing. Normally its absence just skips using that rule.
   - yaml
@@ -75,7 +75,7 @@ enable_list:
 # Ansible-lint does not fail on warnings from the rules or tags listed below
 warn_list:
   - skip_this_tag
-  - experimental # experimental is included in the implicit list
+  - experimental  # experimental is included in the implicit list
   - role-name
   - yaml[document-start]  # you can also use sub-rule matches
 
